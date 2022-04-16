@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import QuickStepHomePage from '../_QuickStepHomePage/QuickStepHomePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,15 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+          
+            {/*  quickStep Home Page  */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/quickStepHome"
+          >
+            <QuickStepHomePage />
           </ProtectedRoute>
 
           <ProtectedRoute
