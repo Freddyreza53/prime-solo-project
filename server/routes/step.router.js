@@ -5,18 +5,15 @@ const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+require('dotenv').config();
+
+
+
 const { google } = require("googleapis");
 const request = require("request");
-
 const urlParse = require("url-parse");
 const queryParse = require("query-string");
 const axios = require("axios");
-
-// Client ID
-// 610733278251-6irih7hnit1v2d1vvkgiquq5lip3jfhf.apps.googleusercontent.com
-
-// Client Secret
-// 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
 
 /**
  * GET route template
@@ -25,9 +22,9 @@ router.get('/', (req, res) => {
   // GET route code here
     const oauth2Client = new google.auth.OAuth2(
         // Client ID
-        "610733278251-6irih7hnit1v2d1vvkgiquq5lip3jfhf.apps.googleusercontent.com",
+        process.env.GOOGLE_CLIENT_ID,
         // Client Secret
-        "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",
+        process.env.GOOGLE_CLIENT_SECRET,
         // link to redirect to
         "http://localhost:5000/getSteps/steps"
     );
@@ -55,9 +52,9 @@ router.get("/steps", async (req, res) => {
     const code = queryParse.parse(queryURL.query).code;
     const oauth2Client = new google.auth.OAuth2(
         // Client ID
-        "610733278251-6irih7hnit1v2d1vvkgiquq5lip3jfhf.apps.googleusercontent.com",
+        process.env.GOOGLE_CLIENT_ID,
         // Client Secret
-        "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",
+        process.env.GOOGLE_CLIENT_SECRET,
         // link to redirect to
         "http://localhost:5000/getSteps/steps"
 
