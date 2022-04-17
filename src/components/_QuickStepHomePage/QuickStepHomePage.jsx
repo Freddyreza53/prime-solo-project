@@ -6,8 +6,8 @@ function QuickStepHomePage() {
 
     const handleClick = () => {
         console.log('clicked');
-        axios.get('/steps').then (result => {
-            console.log(result);
+        axios.get('/getSteps').then (result => {
+            console.log(result.data.url);
         })
     }
 
