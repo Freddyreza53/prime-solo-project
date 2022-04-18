@@ -25,6 +25,7 @@ import QuickStepHomePage from '../_QuickStepHomePage/QuickStepHomePage';
 import GameStartPage from '../_GameStartPage/GameStartPage';
 import ScoreboardPage from '../_ScoreboardPage/ScoreboardPage';
 import CountdownPage from '../_CountdownPage/CountdownPage';
+import CountdownGamePage from '../_CountdownGamePage/CountdownGamePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -95,6 +96,14 @@ function App() {
             path="/countdown"
           >
             <CountdownPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/countdownGame"
+          >
+            <CountdownGamePage />
           </ProtectedRoute>
 
           <ProtectedRoute

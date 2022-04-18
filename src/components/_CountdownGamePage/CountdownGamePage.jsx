@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './CountdownPage.css'
+// import './GameStartPage.css'
 import axios from 'axios';
 import Countdown from 'react-countdown';
 
-function CountdownPage() {
+function CountdownGamePage() {
 
     const history = useHistory();
-
-    const goToCountdown = () => {
-        history.push('/countdownGame')
-    }
 
     return (
         <div className="GameStartPageDiv">
@@ -19,12 +15,12 @@ function CountdownPage() {
                 <h1>quickStep</h1>
             </div>
             <div className="rulesDiv">
-            <Countdown className="countdown" onComplete={goToCountdown}date={Date.now() + 5000}>
-                <h1>GO!</h1>
+            <Countdown className="countdown" date={Date.now() + 15000}>
+                <h1>Done!</h1>
             </Countdown>
             </div>
         </div>
     )
 }
 
-export default CountdownPage;
+export default CountdownGamePage;
