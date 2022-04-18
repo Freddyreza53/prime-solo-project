@@ -10,6 +10,8 @@ function GameStartPage() {
     const history = useHistory();
     const currentMode = useSelector(store => store.mode);
 
+    const [currentSteps, setCurrentSteps] = useState('');
+
     // switch (mode) {
         //     case 'easy':
         //         console.log('easy clicked');
@@ -30,21 +32,35 @@ function GameStartPage() {
         // }
 
     const handleStart = () => {
-        console.log(currentMode);
+        console.log(currentSteps);
+        dispatch({
+            type: 'SET_STEPS',
+            payload: currentSteps
+        })
+
+        history.push('/countdown')
+
+        setCurrentSteps('')
     }
 
     return (
-        <div>
+        <div className="GameStartPageDiv">
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
-            <div>
+            <div className="rulesDiv">
                 <h2>{currentMode.difficulty}</h2>
                 <p>Try and get as many steps as you can within {currentMode.time} seconds!</p>
                 <p>Please enter current step count on your phone/pedometer:</p>
-                <label>Current Steps</label>
-                <input type="number" placeholder="Current Steps"/>
-
+                <div>
+                    <label>Current Steps</label>
+                    <input 
+                        type="number" 
+                        placeholder="Current Steps" 
+                        value={currentSteps} 
+                        onChange={(event) => setCurrentSteps(event.target.value)}
+                    />
+                </div>
                 <button onClick={handleStart}>Start</button>
             </div>
         </div>
