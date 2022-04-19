@@ -10,6 +10,15 @@ const {
  */
 router.get('/', (req, res) => {
   // GET route code here
+    let queryText = `SELECT * FROM "steps";`;
+        pool.query(queryText)
+        .then(result => {
+            res.send(result.rows)
+        }).catch(err => { 
+        res.sendStatus(500);
+        // For testing only, can be removed
+        });
+    
 });
 
 /**

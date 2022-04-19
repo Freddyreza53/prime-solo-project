@@ -6,9 +6,15 @@ import axios from 'axios';
 
 function ScoreboardPage() {
 
+    useEffect(() => {
+        dispatch({
+            type: 'GET_SCOREBOARD'
+        })
+    }, [])
+
     const dispatch = useDispatch();
     const history = useHistory();
-    const currentMode = useSelector(store => store.mode);
+    const myScoreboard = useSelector(store => store.stepScoreboardReducer);
 
     const handleStart = () => {
         console.log(currentMode);
@@ -21,7 +27,14 @@ function ScoreboardPage() {
             </div>
             <div>
                 <h2>Scoreboard Page Info goes here</h2>
-                <button onClick={handleStart}>Start</button>
+                {myScoreboard.map( stepScore => {
+                    return (
+                        <ul key={stepScore.id}>
+                            <li>{stepScore.step_amount}</li>
+                            <li>{stepScore.difficulty}</li>
+                        </ul>
+                    )
+                })}
             </div>
         </div>
     )

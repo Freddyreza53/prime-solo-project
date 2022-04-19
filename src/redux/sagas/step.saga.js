@@ -4,22 +4,23 @@ import axios from 'axios';
 function* stepSagaWatcher() {
     // yield takeEvery('FETCH_ITEMS', fetchItems);
     yield takeEvery('POST_STEP_SCORE', addStepScore);
+    yield takeEvery('GET_SCOREBOARD', getSteps)
 }
 
 function* addStepScore(action) {
     try {
-    yield axios.post('/steps', action.payload);
-    yield put({type: 'FETCH_STEPS'})
+        yield axios.post('/steps', action.payload);
+        yield put({type: 'GET_SCOREBOARD'})
     } catch (error) {
         console.log('post step score error - ', error);
         
     }
 }
 
-// function* fetchItems() {
-//     let items = yield axios.get('/api/shelf');
-//     yield put({type: 'SET_LIST_ITEMS', payload: items.data})
-// }
+function* getSteps() {
+    let scoreboard = yield axios.get('/steps');
+    yield put({type: 'SET_SCOREBOARD', payload: scoreboard.data})
+}
 
 
 export default stepSagaWatcher;
