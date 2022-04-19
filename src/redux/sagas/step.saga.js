@@ -18,7 +18,7 @@ function* addStepScore(action) {
 }
 
 function* getSteps() {
-    let scoreboard = yield axios.get('/steps');
+    let scoreboard = yield axios.get('/steps/myScores');
     yield put({type: 'SET_SCOREBOARD', payload: scoreboard.data})
 }
 

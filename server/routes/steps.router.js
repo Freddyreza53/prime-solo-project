@@ -8,10 +8,29 @@ const {
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/topScores', rejectUnauthenticated, (req, res) => {
   // GET route code here
     let queryText = `SELECT * FROM "steps";`;
         pool.query(queryText)
+        .then(result => {
+            res.send(result.rows)
+        }).catch(err => { 
+        res.sendStatus(500);
+        // For testing only, can be removed
+        });
+    
+});
+
+router.get('/myScores', rejectUnauthenticated, (req, res) => {
+  // GET route code here
+    let queryText = `
+      SELECT * FROM "steps"
+      WHERE "user_id" = $1;
+    `;
+
+    let values = [req.user.id];
+
+        pool.query(queryText, values)
         .then(result => {
             res.send(result.rows)
         }).catch(err => { 
