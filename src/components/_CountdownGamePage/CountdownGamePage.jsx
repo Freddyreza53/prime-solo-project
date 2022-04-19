@@ -9,13 +9,18 @@ function CountdownGamePage() {
 
     const history = useHistory();
 
+    const goToScore = () => {
+        history.push('/gameDone')
+    }
+
     return (
         <div className="GameStartPageDiv">
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
             <div className="rulesDiv">
-            <Countdown className="countdown" date={Date.now() + 15000}>
+            <h1>GO!</h1>
+            <Countdown className="countdown" onComplete={goToScore} date={Date.now() + 3000}>
                 <h1>Done!</h1>
             </Countdown>
             </div>

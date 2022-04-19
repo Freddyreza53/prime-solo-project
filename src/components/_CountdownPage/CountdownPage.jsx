@@ -19,7 +19,7 @@ function CountdownPage() {
                 <h1>quickStep</h1>
             </div>
             <div className="rulesDiv">
-            <Countdown className="countdown" onComplete={goToCountdown}date={Date.now() + 5000}>
+            <Countdown className="countdown" onComplete={goToCountdown} date={Date.now() + 3000}>
                 <h1>GO!</h1>
             </Countdown>
             </div>
