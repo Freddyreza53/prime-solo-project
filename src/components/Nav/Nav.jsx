@@ -29,7 +29,11 @@ function Nav() {
               Scoreboard
             </Link>
 
-            <LogOutButton className="navLink" />
+            <Link className="navLink" to="/profile">
+              Profile
+            </Link>
+            {/* <LogOutButton className="navLink" /> */}
+
           </>
         )}
 

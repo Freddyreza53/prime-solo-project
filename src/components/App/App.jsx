@@ -28,6 +28,7 @@ import CountdownPage from '../_CountdownPage/CountdownPage';
 import CountdownGamePage from '../_CountdownGamePage/CountdownGamePage';
 import GameDonePage from '../_GameDonePage/GameDonePage';
 import ScorePage from '../_ScorePage/ScorePage';
+import ProfilePage from '../_ProfilePage/ProfilePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -122,6 +123,14 @@ function App() {
             path="/scorePage"
           >
             <ScorePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/profile"
+          >
+            <ProfilePage />
           </ProtectedRoute>
 
           <ProtectedRoute
