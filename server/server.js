@@ -10,7 +10,8 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const stepRouter = require('./routes/step.router');
+const googleStepRouter = require('./routes/googleStep.router');
+const stepsRouter = require('./routes/steps.router')
 
 
 app.use(cors())
@@ -28,7 +29,8 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/getSteps', stepRouter)
+app.use('/getSteps', googleStepRouter);
+app.use('/steps', stepsRouter)
 // app.use('/steps', stepRouter)
 // Serve static files
 app.use(express.static('build'));

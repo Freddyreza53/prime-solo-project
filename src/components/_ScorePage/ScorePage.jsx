@@ -15,14 +15,16 @@ function ScorePage() {
     const handleSave = () => {
         dispatch({
             type: 'POST_STEP_SCORE',
-            payload: stepScore
+            payload: {
+                stepScore: stepScore,
+                mode: mode.difficulty.toLowerCase()
+            }
         })
         history.push('/quickStepHome')
         // sweet alert here to confirm saved score
     }
 
     const handleTryAgain = () => {
-        console.log('try again');
         history.push('/gameStart')
     }
 
