@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import './ScoreboardPage.css'
+import './MyScoreboardPage.css'
 import axios from 'axios';
 
-function ScoreboardPage() {
+function MyScoreboardPage() {
 
     useEffect(() => {
         dispatch({
-            type: 'GET_SCOREBOARD'
+            type: 'GET_MY_SCOREBOARD'
         })
     }, [])
 
@@ -20,13 +20,20 @@ function ScoreboardPage() {
         console.log(currentMode);
     }
 
+    const getTopScores = () => {
+        console.log('top scores clicked');
+        history.push('/topScoreboard')
+    }
+
     return (
         <div>
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
             <div>
-                <h2>Scoreboard Page Info goes here</h2>
+                <h2>My Scoreboard Info goes here</h2>
+                <h3>My Scores</h3>
+                <h3 onClick={getTopScores}>Top Scores</h3>
                 {myScoreboard.map( stepScore => {
                     return (
                         <ul key={stepScore.id}>
@@ -40,4 +47,4 @@ function ScoreboardPage() {
     )
 }
 
-export default ScoreboardPage;
+export default MyScoreboardPage;

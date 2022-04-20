@@ -25,7 +25,7 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/scoreboard">
+            <Link className="navLink" to="/myScoreboard">
               Scoreboard
             </Link>
 

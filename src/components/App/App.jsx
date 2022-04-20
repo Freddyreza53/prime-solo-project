@@ -23,7 +23,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 import QuickStepHomePage from '../_QuickStepHomePage/QuickStepHomePage';
 import GameStartPage from '../_GameStartPage/GameStartPage';
-import ScoreboardPage from '../_ScoreboardPage/ScoreboardPage';
+import MyScoreboardPage from '../_MyScoreboardPage/MyScoreboardPage';
+import TopScoreboardPage from '../_TopScoreboardPage/TopScoreboardPage';
 import CountdownPage from '../_CountdownPage/CountdownPage';
 import CountdownGamePage from '../_CountdownGamePage/CountdownGamePage';
 import GameDonePage from '../_GameDonePage/GameDonePage';
@@ -88,9 +89,17 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/scoreboard"
+            path="/myScoreboard"
           >
-            <ScoreboardPage />
+            <MyScoreboardPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/topScoreboard"
+          >
+            <TopScoreboardPage />
           </ProtectedRoute>
 
           <ProtectedRoute
