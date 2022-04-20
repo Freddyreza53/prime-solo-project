@@ -8,7 +8,8 @@ function TopScoreboardPage() {
 
     useEffect(() => {
         dispatch({
-            type: 'GET_TOP_SCOREBOARD'
+            type: 'GET_TOP_SCORES',
+            payload: 'easy'
         })
     }, [])
 
@@ -16,8 +17,12 @@ function TopScoreboardPage() {
     const history = useHistory();
     const topScoreboard = useSelector(store => store.stepScoreboardReducer);
 
-    const handleStart = () => {
-        console.log(currentMode);
+    const getScores = (difficulty) => {
+        console.log(difficulty);
+        dispatch({
+            type: 'GET_TOP_SCORES',
+            payload: difficulty
+        })
     }
 
     const getTopScores = () => {
@@ -34,14 +39,32 @@ function TopScoreboardPage() {
                 <h2>My Scoreboard Info goes here</h2>
                 <h3 onClick={getTopScores}>My Scores</h3>
                 <h3>Top Scores</h3>
-                {topScoreboard.map( stepScore => {
-                    return (
-                        <ul key={stepScore.id}>
-                            <li>{stepScore.step_amount}</li>
-                            <li>{stepScore.difficulty}</li>
-                        </ul>
-                    )
-                })}
+                <div>
+                    <h4 onClick={() => getScores('easy')}>Easy</h4>
+                    <h4 onClick={() => getScores('medium')}>Medium</h4>
+                    <h4 onClick={() => getScores('hard')}>Hard</h4>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Step Score</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {topScoreboard.map( (stepScore, index )=> {
+                            return (
+                                <tr key={stepScore.id}>
+                                    <td>{index + 1}</td>
+                                    <td>{stepScore.step_amount}</td>
+                                    <td>{stepScore.difficulty}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+                
             </div>
         </div>
     )

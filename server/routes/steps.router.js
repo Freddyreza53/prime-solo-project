@@ -8,36 +8,46 @@ const {
 /**
  * GET route template
  */
-router.get('/topScores', rejectUnauthenticated, (req, res) => {
+router.get(`/topScores/:difficulty`, rejectUnauthenticated, (req, res) => {
   // GET route code here
-    let queryText = `SELECT * FROM "steps";`;
-        pool.query(queryText)
-        .then(result => {
-            res.send(result.rows)
-        }).catch(err => { 
-        res.sendStatus(500);
-        // For testing only, can be removed
-        });
+  let difficulty = req.params.difficulty;
+
+  let queryText = `
+    SELECT * FROM "steps"
+    WHERE "difficulty" = $1;
+  `;
+
+  let values = [difficulty];
+
+      pool.query(queryText, values)
+      .then(result => {
+          res.send(result.rows)
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
     
 });
 
-router.get('/myScores', rejectUnauthenticated, (req, res) => {
+router.get(`/myScores/:difficulty`, rejectUnauthenticated, (req, res) => {
   // GET route code here
-    let queryText = `
-      SELECT * FROM "steps"
-      WHERE "user_id" = $1;
-    `;
+  let difficulty = req.params.difficulty;
 
-    let values = [req.user.id];
+  let queryText = `
+    SELECT * FROM "steps"
+    WHERE "user_id" = $1 AND "difficulty" = $2;
+  `;
 
-        pool.query(queryText, values)
-        .then(result => {
-            res.send(result.rows)
-        }).catch(err => { 
-        res.sendStatus(500);
-        // For testing only, can be removed
-        });
-    
+  let values = [req.user.id, difficulty];
+
+      pool.query(queryText, values)
+      .then(result => {
+          res.send(result.rows)
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
+  
 });
 
 /**
@@ -45,23 +55,23 @@ router.get('/myScores', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', rejectUnauthenticated,(req, res) => {
   // POST route code here
-    console.log('req.body is:', req.body);
+  console.log('req.body is:', req.body);
 
-    let queryText = `
-        INSERT INTO "steps" ("step_amount", "difficulty", "user_id")
-        VALUES ($1, $2, $3);
-    `;
+  let queryText = `
+      INSERT INTO "steps" ("step_amount", "difficulty", "user_id")
+      VALUES ($1, $2, $3);
+  `;
 
-    let values = [req.body.stepScore, req.body.mode, req.user.id]
+  let values = [req.body.stepScore, req.body.mode, req.user.id]
 
-    pool.query(queryText, values)
-        .then(result => {
-        res.sendStatus(201)
-        
-        }).catch(err => { 
-        res.sendStatus(500);
-        // For testing only, can be removed
-        });
+  pool.query(queryText, values)
+      .then(result => {
+      res.sendStatus(201)
+      
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
 });
 
 router.put('/', rejectUnauthenticated,(req, res) => {
