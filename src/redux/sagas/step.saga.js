@@ -11,6 +11,7 @@ function* stepSagaWatcher() {
 function* addStepGoals(action) {
     try {
         yield axios.put(`/steps`, action.payload);
+        yield put({type: 'CLEAR_USER_TO_EDIT'})
         yield put({type: 'FETCH_USER'})
         // yield put({type: 'SET_USER'})
     } catch (error) {
