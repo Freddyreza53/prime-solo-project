@@ -96,4 +96,25 @@ router.put('/', rejectUnauthenticated,(req, res) => {
         });
 });
 
+router.delete('/:id', rejectUnauthenticated,(req, res) => {
+  // POST route code here
+    console.log('req.body.id is:', req.body.id);
+
+    let queryText = `
+      DELETE FROM "steps"
+      WHERE "id" = $1 AND "user_id" = $2;
+    `;
+
+    let values = [req.params.id, req.user.id]
+
+    pool.query(queryText, values)
+        .then(result => {
+        res.sendStatus(201)
+        
+        }).catch(err => { 
+        res.sendStatus(500);
+        // For testing only, can be removed
+        });
+});
+
 module.exports = router;
