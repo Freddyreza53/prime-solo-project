@@ -64,4 +64,26 @@ router.post('/', rejectUnauthenticated,(req, res) => {
         });
 });
 
+router.put('/', rejectUnauthenticated,(req, res) => {
+  // POST route code here
+    console.log('req.body is:', req.body);
+
+    let queryText = `
+      UPDATE "user"
+      SET "daily_goal" = $1, "easy_goal" = $2, "medium_goal" = $3, "hard_goal" = $4
+      WHERE "id" = $5;
+    `;
+
+    let values = [req.body.daily_goal, req.body.easy_goal, req.body.medium_goal, req.body.hard_goal, req.user.id]
+
+    pool.query(queryText, values)
+        .then(result => {
+        res.sendStatus(201)
+        
+        }).catch(err => { 
+        res.sendStatus(500);
+        // For testing only, can be removed
+        });
+});
+
 module.exports = router;

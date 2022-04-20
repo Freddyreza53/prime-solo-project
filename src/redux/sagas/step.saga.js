@@ -4,7 +4,18 @@ import axios from 'axios';
 function* stepSagaWatcher() {
     // yield takeEvery('FETCH_ITEMS', fetchItems);
     yield takeEvery('POST_STEP_SCORE', addStepScore);
-    yield takeEvery('GET_SCOREBOARD', getSteps)
+    yield takeEvery('GET_SCOREBOARD', getSteps);
+    yield takeEvery('PUT_STEP_GOALS', addStepGoals);
+}
+
+function* addStepGoals(action) {
+    try {
+        yield axios.put(`/steps`, action.payload);
+        // yield put({type: 'SET_USER'})
+    } catch (error) {
+        console.log('put step goals error - ', error);
+        
+    }
 }
 
 function* addStepScore(action) {
