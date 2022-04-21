@@ -5,13 +5,18 @@
 }
 
 .homePageTitle {
-    border: 2px solid black;
-    padding: 10px;
-    background-color: aqua;
+    margin-top: 20px;
+    width: 333px;
+    height: 75px;
+    text-align: center;
+    background-color: #3DB6FB;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
 }
 
 .modeSelectDiv {
-    /* width: 350px; */
+    margin-top: 100px;
     justify-content: center;
     display: flex;
     flex-direction: row;
@@ -19,10 +24,20 @@
 }
 
 .modeButton {
-    margin: 10px;
+    margin: 15px;
     width: 140px;
     height: 145px;
-    background-color: aqua;
+    background-color: white;
     box-shadow: 5px 10px 4px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
+
+    font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 23px;
+text-align: center;
+
+color: black;
+
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.4);
 }

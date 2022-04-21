@@ -8,6 +8,7 @@ function QuickStepHomePage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    // const [clicked, setClicked] = useState(false);
     
 
 
@@ -19,6 +20,10 @@ function QuickStepHomePage() {
 
         history.push('/gameStart');
     }
+
+    // const handleStart = () => {
+    //     console.log('start clicked');
+    // }
 
     // const handleClick = () => {
     //     console.log('clicked');
@@ -39,6 +44,7 @@ function QuickStepHomePage() {
                 <button className="modeButton" value="Hard" onClick={(event) => handleClicked(event.target.value)}>HARD</button>
                 <button className="modeButton" value="Challenge" onClick={(event) => handleClicked(event.target.value)}>CHALLENGE</button>
             </div>
+            {/* <button className="stepButton" onClick={handleStart}>Start</button> */}
             {/* <button onClick={handleClick}>Click Me For Steps</button> */}
         </div>
     )
