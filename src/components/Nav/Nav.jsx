@@ -11,6 +11,15 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
+// react-icons import
+import { FaPlay } from 'react-icons/fa';
+import { BsPersonFill } from 'react-icons/bs';
+import { MdLeaderboard } from 'react-icons/md';
+import { BsFillInfoCircleFill } from 'react-icons/bs';
+import { MdLogin } from 'react-icons/md';
+
+
+
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -42,12 +51,12 @@ function Nav() {
             >
             <BottomNavigationAction 
               label="login" 
-              icon={<RestoreIcon />} 
+              icon={<MdLogin size={30}/>} 
               onClick={() => history.push("/login")}
             />
             <BottomNavigationAction 
               label="about" 
-              icon={<RestoreIcon />} 
+              icon={<BsFillInfoCircleFill size={30}/>} 
               onClick={() => history.push("/about")}
             />
 
@@ -69,17 +78,17 @@ function Nav() {
           >
           <BottomNavigationAction 
             label="Scoreboard" 
-            icon={<RestoreIcon />} 
+            icon={<MdLeaderboard size={30}/>} 
             onClick={() => history.push("/myScoreboard")}
           />
           <BottomNavigationAction 
             label="Play" 
-            icon={<FavoriteIcon />} 
+            icon={<FaPlay size={20}/>} 
             onClick={() => history.push("/quickStepHome")}
           />
           <BottomNavigationAction 
             label="Profile" 
-            icon={<LocationOnIcon />}
+            icon={<BsPersonFill size={30} />}
             onClick={() => history.push("/profile")}
           />
         </BottomNavigation>
