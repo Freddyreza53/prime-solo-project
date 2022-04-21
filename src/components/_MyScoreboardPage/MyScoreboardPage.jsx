@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './MyScoreboardPage.css'
-import axios from 'axios';
 
 function MyScoreboardPage() {
 
@@ -79,7 +78,6 @@ function MyScoreboardPage() {
                         </tbody>
                     </table>
                 </div>
-                
             </div>
         </div>
     )

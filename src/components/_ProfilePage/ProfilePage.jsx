@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-// import './ScoreboardPage.css'
+import './ProfilePage.css'
 
 function ProfilePage() {
 
@@ -34,43 +34,50 @@ function ProfilePage() {
     const handleChange = (event, property) => {
         dispatch({
             type: 'EDIT_ON_CHANGE',
-            payload: { property: property, value: event.target.value }
+            payload: { 
+                property: property,
+                value: event.target.value 
+            }
         })
     }
 
     return (
-        <div>
+        <div className="pageContainer">
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
-            <div>
+            <div className="profileContainer">
                 <h2>quickStep Profile</h2>
-                <p>UserName: {user.username}</p>
-                <p>Daily Step Goal: {editMode ? <input 
+                <p>UserName: <span>{user.username}</span></p>
+                <p>Daily Step Goal: <span>{editMode ? <input 
                                                     type="number" 
+                                                    className="inputSize"
                                                     value={editUser.daily_goal} 
                                                     onChange={(event) => handleChange(event, 'daily_goal')}
                                                 /> 
                                                 :
-                                                user.daily_goal}</p>
-                <p>Daily quickStep Easy Goal: {editMode ? <input 
-                                                    type="number" 
+                                                user.daily_goal}</span></p>
+                <p>Daily quickStep Easy Goal: <span>{editMode ? <input 
+                                                    type="number"
+                                                    className="inputSize" 
                                                     value={editUser.easy_goal} 
                                                     onChange={(event) => handleChange(event, 'easy_goal')}
                                                 /> 
-                                                :user.easy_goal}</p>
-                <p>Daily quickStep Medium Goal: {editMode ? <input 
-                                                    type="number" 
+                                                :user.easy_goal}</span></p>
+                <p>Daily quickStep Medium Goal: <span>{editMode ? <input 
+                                                    type="number"
+                                                    className="inputSize" 
                                                     value={editUser.medium_goal} 
                                                     onChange={(event) => handleChange(event, 'medium_goal')}
                                                 /> 
-                                                :user.medium_goal}</p>
-                <p>Daily quickStep Hard Goal: {editMode ? <input 
+                                                :user.medium_goal}</span></p>
+                <p>Daily quickStep Hard Goal: <span>{editMode ? <input 
                                                     type="number" 
+                                                    className="inputSize"
                                                     value={editUser.hard_goal} 
                                                     onChange={(event) => handleChange(event, 'hard_goal')}
                                                 /> 
-                                                :user.hard_goal}</p>
+                                                :user.hard_goal}</span></p>
 
                 {editMode ? <button onClick={handleSave}>save</button> : <button onClick={handleUpdate}>Update</button>}
                 <LogOutButton />
