@@ -42,40 +42,43 @@ function MyScoreboardPage() {
     }
 
     return (
-        <div>
+        <div className="pageContainer">
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
             <div>
                 <h2>My Scoreboard Info goes here</h2>
-                <h3>My Scores</h3>
-                
-                <h3 onClick={getTopScores}>Top Scores</h3>
-                <div>
+                <div className="scoreNavBar">
+                    <h3>My Scores</h3>
+                    <h3 onClick={getTopScores}>Top Scores</h3>
+                </div>
+                <div className="modeNavBar">
                     <h4 onClick={() => getScores('easy')}>Easy</h4>
                     <h4 onClick={() => getScores('medium')}>Medium</h4>
                     <h4 onClick={() => getScores('hard')}>Hard</h4>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Step Score</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {myScoreboard.map( (stepScore, index )=> {
-                            return (
-                                <tr key={stepScore.id}>
-                                    <td>{index + 1}</td>
-                                    <td>{stepScore.step_amount}</td>
-                                    <td><button onClick={() => handleDelete(stepScore)}>DELETE</button></td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                <div className="tableContainer">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Step Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {myScoreboard.map( (stepScore, index )=> {
+                                return (
+                                    <tr key={stepScore.id}>
+                                        <td>{index + 1}</td>
+                                        <td>{stepScore.step_amount}</td>
+                                        <td><button onClick={() => handleDelete(stepScore)}>DELETE</button></td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </div>
                 
             </div>
         </div>
