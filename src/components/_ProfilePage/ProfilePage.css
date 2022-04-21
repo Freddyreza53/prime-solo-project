@@ -5,11 +5,15 @@ p {
 
 .profileContainer{
     width: 70vw;
-    min-height: 400px;
+    max-height: 500px;
     border: 2px solid black;
     margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
     padding: 5%;
     background-color: white;
+    margin-bottom: 20%;
+    text-align: center;
 }
 
 .inputSize {

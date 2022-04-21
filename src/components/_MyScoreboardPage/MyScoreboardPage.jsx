@@ -46,7 +46,7 @@ function MyScoreboardPage() {
                 <h1>quickStep</h1>
             </div>
             <div className="profileContainer">
-                <h2>My Scoreboard Info goes here</h2>
+                <h2>My Scoreboard</h2>
                 <div className="scoreNavBar">
                     <h3>My Scores</h3>
                     <h3 onClick={getTopScores}>Top Scores</h3>
