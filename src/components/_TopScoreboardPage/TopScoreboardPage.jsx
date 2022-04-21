@@ -58,7 +58,7 @@ function TopScoreboardPage() {
                                 <tr key={stepScore.id}>
                                     <td>{index + 1}</td>
                                     <td>{stepScore.step_amount}</td>
-                                    <td>{stepScore.difficulty}</td>
+                                    <td>{stepScore.username}</td>
                                 </tr>
                             )
                         })}

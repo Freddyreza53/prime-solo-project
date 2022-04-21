@@ -13,8 +13,10 @@ router.get(`/topScores/:difficulty`, rejectUnauthenticated, (req, res) => {
   let difficulty = req.params.difficulty;
 
   let queryText = `
-    SELECT * FROM "steps"
-    WHERE "difficulty" = $1;
+    SELECT "steps".id, "user".username, "steps".step_amount FROM "steps"
+    JOIN "user" ON "user".id = "steps".user_id
+    WHERE "steps".difficulty = $1
+    ORDER BY "steps".step_amount DESC;
   `;
 
   let values = [difficulty];
