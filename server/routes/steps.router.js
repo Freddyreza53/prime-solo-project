@@ -37,7 +37,8 @@ router.get(`/myScores/:difficulty`, rejectUnauthenticated, (req, res) => {
 
   let queryText = `
     SELECT * FROM "steps"
-    WHERE "user_id" = $1 AND "difficulty" = $2;
+    WHERE "user_id" = $1 AND "difficulty" = $2
+    ORDER BY "steps".step_amount DESC;
   `;
 
   let values = [req.user.id, difficulty];
