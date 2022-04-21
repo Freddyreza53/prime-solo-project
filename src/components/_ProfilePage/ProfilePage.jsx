@@ -79,8 +79,8 @@ function ProfilePage() {
                                                 /> 
                                                 :user.hard_goal}</span></p>
 
-                {editMode ? <button onClick={handleSave}>save</button> : <button onClick={handleUpdate}>Update</button>}
-                <LogOutButton />
+                {editMode ? <button className="stepButton" onClick={handleSave}>save</button> : <button className="stepButton" onClick={handleUpdate}>Update</button>}
+                <LogOutButton className="stepButton"/>
                 
             </div>
         </div>

@@ -45,7 +45,7 @@ function MyScoreboardPage() {
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
-            <div>
+            <div className="profileContainer">
                 <h2>My Scoreboard Info goes here</h2>
                 <div className="scoreNavBar">
                     <h3>My Scores</h3>
@@ -71,7 +71,7 @@ function MyScoreboardPage() {
                                     <tr key={stepScore.id}>
                                         <td>{index + 1}</td>
                                         <td>{stepScore.step_amount}</td>
-                                        <td><button onClick={() => handleDelete(stepScore)}>DELETE</button></td>
+                                        <td><button className="stepButton" onClick={() => handleDelete(stepScore)}>DELETE</button></td>
                                     </tr>
                                 )
                             })}

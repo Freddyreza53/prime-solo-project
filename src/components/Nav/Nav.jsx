@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   root: {
     width: "100%",
     position: 'fixed',
-    bottom: 0
+    bottom: 0,
   },
 });
 
@@ -80,7 +80,7 @@ function Nav() {
           />
           <BottomNavigationAction 
             label="Play" 
-            icon={<FaPlay size={20}/>} 
+            icon={<FaPlay size={26}/>} 
             onClick={() => history.push("/quickStepHome")}
           />
           <BottomNavigationAction 
