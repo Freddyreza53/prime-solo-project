@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -58,6 +60,15 @@ function LoginForm() {
       </div>
       <div>
         <input className="stepButton" type="submit" name="submit" value="Log In" />
+        <button
+          type="button"
+          className="btn btn_asLink"
+          onClick={() => {
+            history.push('/registration');
+          }}
+        >
+          Register
+        </button>
       </div>
     </form>
   );
