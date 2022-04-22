@@ -1,4 +1,4 @@
-p {
+.profileP {
     display: flex;
     justify-content: space-between;
 }
@@ -16,10 +16,11 @@ p {
     text-align: center;
 }
 
-.profileContainer p {
+/* .profileContainer p {
     display: flex;
     justify-content: center;
-}
+    justify-content: space-between;
+} */
 
 .inputSize {
     width: 40px;

@@ -33,10 +33,11 @@ function GameStartPage() {
                 <p>Try and get as many steps as you can within {currentMode.time} seconds!</p>
                 <p>Please enter current step count on your phone/pedometer:</p>
                 <div>
-                    <label>Current Steps</label>
+                    <label>Current Steps: </label>
                     <input 
                         type="number" 
-                        placeholder="Current Steps" 
+                        className="inputSize"
+                        placeholder="Steps" 
                         value={currentSteps} 
                         onChange={(event) => setCurrentSteps(event.target.value)}
                     />

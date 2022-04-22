@@ -32,7 +32,8 @@ function GameDonePage() {
                 <label>New Step Count: </label>
                 <input 
                     type="number" 
-                    placeholder="New Step Count" 
+                    className="inputSize"
+                    placeholder="Steps" 
                     value={newStepCount} 
                     onChange={(event) => setNewStepCount(event.target.value)}
                 />

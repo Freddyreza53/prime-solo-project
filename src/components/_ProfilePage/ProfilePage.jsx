@@ -47,9 +47,9 @@ function ProfilePage() {
                 <h1>quickStep</h1>
             </div>
             <div className="profileContainer">
-                <h2>quickStep Profile</h2>
-                <p>UserName: <span>{user.username}</span></p>
-                <p>Daily Step Goal: <span>{editMode ? <input 
+                <h2>My Profile</h2>
+                <p className="profileP">UserName: <span>{user.username}</span></p>
+                <p className="profileP">Daily Step Goal: <span>{editMode ? <input 
                                                     type="number" 
                                                     className="inputSize"
                                                     value={editUser.daily_goal} 
@@ -57,21 +57,21 @@ function ProfilePage() {
                                                 /> 
                                                 :
                                                 user.daily_goal}</span></p>
-                <p>Daily quickStep Easy Goal: <span>{editMode ? <input 
+                <p className="profileP">Daily quickStep Easy Goal: <span>{editMode ? <input 
                                                     type="number"
                                                     className="inputSize" 
                                                     value={editUser.easy_goal} 
                                                     onChange={(event) => handleChange(event, 'easy_goal')}
                                                 /> 
                                                 :user.easy_goal}</span></p>
-                <p>Daily quickStep Medium Goal: <span>{editMode ? <input 
+                <p className="profileP">Daily quickStep Medium Goal: <span>{editMode ? <input 
                                                     type="number"
                                                     className="inputSize" 
                                                     value={editUser.medium_goal} 
                                                     onChange={(event) => handleChange(event, 'medium_goal')}
                                                 /> 
                                                 :user.medium_goal}</span></p>
-                <p>Daily quickStep Hard Goal: <span>{editMode ? <input 
+                <p className="profileP">Daily quickStep Hard Goal: <span>{editMode ? <input 
                                                     type="number" 
                                                     className="inputSize"
                                                     value={editUser.hard_goal} 
