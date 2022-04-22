@@ -27,7 +27,7 @@ function QuickStepHomePage() {
 
     // const handleClick = () => {
     //     console.log('clicked');
-    //     axios.get('/getSteps').then (result => {
+    //     axios.get('/getSteps/steps').then (result => {
     //         console.log(result.data.url);
     //     })
     // }

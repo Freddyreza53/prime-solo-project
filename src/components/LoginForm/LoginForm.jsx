@@ -14,12 +14,18 @@ function LoginForm() {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        client_id: "610733278251-6irih7hnit1v2d1vvkgiquq5lip3jfhf.apps.googleusercontent.com",
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
         scope: "https://www.googleapis.com/auth/fitness.activity.read profile email openid"
       })
     };
     gapi.load('client:auth2', start)
+    
   }, [])
+
+  // const accessToken = gapi.auth.getToken().access_token;
+
+  //   console.log(accessToken);
+
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

@@ -13,7 +13,7 @@ function GoogleLogoutButton() {
         <div>
             <h1>Google Logout Here</h1>
             <GoogleLogout 
-                client_id="610733278251-6irih7hnit1v2d1vvkgiquq5lip3jfhf.apps.googleusercontent.com"
+                client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 buttonText="Logout"
                 onLogoutSuccess={onSuccess}
             />
