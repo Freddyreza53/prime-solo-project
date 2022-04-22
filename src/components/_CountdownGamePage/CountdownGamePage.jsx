@@ -8,6 +8,7 @@ import Countdown from 'react-countdown';
 function CountdownGamePage() {
 
     const history = useHistory();
+    const gameTime = useSelector(store => store.mode.time)
 
     const goToScore = () => {
         history.push('/gameDone')
@@ -20,7 +21,7 @@ function CountdownGamePage() {
             </div>
             <div className="rulesDiv">
             <h1>GO!</h1>
-            <Countdown className="countdown" onComplete={goToScore} date={Date.now() + 3000}>
+            <Countdown className="countdown" onComplete={goToScore} date={Date.now() + (gameTime * 1000)}>
                 <h1>Done!</h1>
             </Countdown>
             </div>

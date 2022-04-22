@@ -26,7 +26,7 @@ function GameDonePage() {
             <div className="homePageTitle">
                 <h1>quickStep</h1>
             </div>
-            <div className="rulesDiv">
+            <div className="profileContainer">
                 <h1>Done!</h1>
                 <p>Previous Step Count: {previousStepCount}</p>
                 <label>New Step Count: </label>
@@ -37,7 +37,7 @@ function GameDonePage() {
                     onChange={(event) => setNewStepCount(event.target.value)}
                 />
                 <p>Input new step count and click save to calculate your quickStep score!</p>
-                <button onClick={handleSave}>Save</button>
+                <button className="stepButton" onClick={handleSave}>Save</button>
             </div>
         </div>
     )

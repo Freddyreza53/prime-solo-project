@@ -1,4 +1,5 @@
 .countdown {
     font-size: xx-large;
-    color: red;
+    color: rgb(255, 255, 255);
+    margin-top: 100px;
 }
