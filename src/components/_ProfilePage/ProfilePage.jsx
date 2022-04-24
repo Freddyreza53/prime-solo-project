@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './ProfilePage.css'
 
 function ProfilePage() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
     const user = useSelector(store => store.user);
     const editUser = useSelector(store => store.editProfileReducer)
 
