@@ -13,10 +13,10 @@ function GoogleLoginButton() {
         console.log('Login Success! Current user: ', res.profileObj.googleId);
         console.log('Login Success! Current user: ', res.profileObj.name);
 
-        // dispatch({
-        //     type: 'GET_GOOGLE_STEPS',
-        //     payload: gapi.auth.getToken().access_token
-        // })
+        dispatch({
+            type: 'SET_TOKEN',
+            payload: gapi.auth.getToken().access_token
+        })
 
         dispatch({
             type: 'LOGIN',

@@ -9,16 +9,19 @@ function GameDonePage() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const previousStepCount = useSelector(store => store.currentSteps)
-    const [newStepCount, setNewStepCount] = useState('')
+    const token = useSelector(store => store.tokenReducer);
+    const time = useSelector(store => store.currentSteps)
 
     const handleSave = () => {
         dispatch({
-            type: 'SET_STEP_SCORE',
-            payload: newStepCount
+            type: 'GET_GOOGLE_STEPS',
+            payload: {
+                token: token,
+                startTime: time.startTime,
+                endTime: time.endTime
+            }
         })
         history.push('/scorePage')
-        setNewStepCount('')
     }
 
     return (
@@ -28,8 +31,8 @@ function GameDonePage() {
             </div>
             <div className="profileContainer">
                 <h1>Done!</h1>
-                <p>Previous Step Count: {previousStepCount}</p>
-                <label>New Step Count: </label>
+                <p>Click on Get Score to see how you did!</p>
+                {/* <label>New Step Count: </label>
                 <input 
                     type="number" 
                     className="inputSize"
@@ -37,8 +40,8 @@ function GameDonePage() {
                     value={newStepCount} 
                     onChange={(event) => setNewStepCount(event.target.value)}
                 />
-                <p>Input new step count and click save to calculate your quickStep score!</p>
-                <button className="stepButton" onClick={handleSave}>Save</button>
+                <p>Input new step count and click save to calculate your quickStep score!</p> */}
+                <button className="stepButton" onClick={handleSave}>Get Score</button>
             </div>
         </div>
     )

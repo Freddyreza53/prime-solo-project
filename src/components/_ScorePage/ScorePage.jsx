@@ -16,7 +16,7 @@ function ScorePage() {
         dispatch({
             type: 'POST_STEP_SCORE',
             payload: {
-                stepScore: stepScore,
+                stepScore: stepScore.steps,
                 mode: mode.difficulty.toLowerCase()
             }
         })
@@ -37,7 +37,7 @@ function ScorePage() {
                 <h1>Score</h1>
                 <p>Awesome Job!</p>
                 <p>Mode: {mode.difficulty}</p>
-                <p>Step Count: {stepScore}</p>
+                <p>Step Count: {stepScore.steps}</p>
                 <p>Click Try Again if you want to try and get a better score. Otherwise, click Save to calculate your quickStep score!</p>
                 <button className="stepButton" onClick={handleTryAgain}>Try Again</button>
                 <button className="stepButton" onClick={handleSave}>Save</button>

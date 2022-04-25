@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // import './GameStartPage.css'
-import axios from 'axios';
 import Countdown from 'react-countdown';
 
 function CountdownGamePage() {

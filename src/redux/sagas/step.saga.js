@@ -12,11 +12,12 @@ function* stepSagaWatcher() {
 
 function* getGoogleSteps(action) {
     let stepArray = [];
+    let stepCount = 0;
     try{
         const result = yield axios({
             method: "POST",
             headers: {
-                authorization: "Bearer " + action.payload
+                authorization: "Bearer " + action.payload.token
             }, 
             "Content-Type": "application/json",
             url: `https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
@@ -28,8 +29,8 @@ function* getGoogleSteps(action) {
                     }
                 ],
                 bucketByTime: {durationMillis: 86400000},
-                startTimeMillis: 1650040036681,
-                endTimeMillis: 1650064200426,
+                startTimeMillis: action.payload.startTime,
+                endTimeMillis: action.payload.endTime,
             }
         });
         // console.log(result);
@@ -43,7 +44,7 @@ function* getGoogleSteps(action) {
             for (const points of dataSet.dataset) {
                 for(const steps of points.point) {
                     console.log(steps.value);
-                    yield put({type: 'SET_GOOGLE_STEPS', payload: steps.value[0].intVal})
+                    stepCount = steps.value[0].intVal;
                 }
             }
         }
@@ -52,7 +53,7 @@ function* getGoogleSteps(action) {
         
     }
     try {
-        yield put({type: 'SET_USER_SCORE'})
+        yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
     } catch (error) {
         console.log('post step score error - ', error);
     }
