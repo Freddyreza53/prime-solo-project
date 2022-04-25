@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 
 // Google Authentication imports
 import GoogleLoginButton from './GoogleLoginButton';
-import GoogleLogoutButton from './GoogleLogoutButton';
 import { gapi } from 'gapi-script';
 
 function LoginForm() {
@@ -31,6 +30,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
 
   const login = (event) => {
@@ -93,7 +93,6 @@ function LoginForm() {
           Register
         </button>
         <GoogleLoginButton />
-        <GoogleLogoutButton />
       </div>
     </form>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import GoogleLogoutButton from '../LoginForm/GoogleLogoutButton';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './ProfilePage.css'
 
@@ -47,6 +48,7 @@ function ProfilePage() {
                 <h1>quickStep</h1>
             </div>
             <div className="profileContainer">
+                <img src={user.picture} alt="Profile Picture" />
                 <h2>My Profile</h2>
                 <p className="profileP">UserName: <span>{user.username}</span></p>
                 <p className="profileP">Daily Step Goal: <span>{editMode ? <input 
@@ -80,7 +82,8 @@ function ProfilePage() {
                                                 :user.hard_goal}</span></p>
 
                 {editMode ? <button className="stepButton" onClick={handleSave}>save</button> : <button className="stepButton" onClick={handleUpdate}>Update</button>}
-                <LogOutButton className="stepButton"/>
+                {/* <LogOutButton className="stepButton"/> */}
+                <GoogleLogoutButton />
                 
             </div>
         </div>
