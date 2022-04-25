@@ -5,6 +5,7 @@ import mode from './mode.reducer';
 import currentSteps from './step.reducer';
 import stepScoreboardReducer from './stepScoreboard.reducer';
 import editProfileReducer from './editProfile.reducer';
+import tokenReducer from './token.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   currentSteps,
   stepScoreboardReducer,
   editProfileReducer,
+  tokenReducer,
 });
 
 export default rootReducer;

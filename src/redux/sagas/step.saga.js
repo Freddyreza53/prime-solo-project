@@ -7,6 +7,55 @@ function* stepSagaWatcher() {
     yield takeEvery('GET_SCORES', getMyScores);
     yield takeEvery('GET_TOP_SCORES', getTopScores);
     yield takeEvery('PUT_STEP_GOALS', addStepGoals);
+    yield takeEvery('GET_GOOGLE_STEPS', getGoogleSteps);
+}
+
+function* getGoogleSteps(action) {
+    let stepArray = [];
+    try{
+        const result = yield axios({
+            method: "POST",
+            headers: {
+                authorization: "Bearer " + action.payload
+            }, 
+            "Content-Type": "application/json",
+            url: `https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+            data: {
+                aggregateBy: [
+                    {
+                        dataTypeName: "com.google.step_count.delta",
+                        dataSourceId: "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+                    }
+                ],
+                bucketByTime: {durationMillis: 86400000},
+                startTimeMillis: 1650040036681,
+                endTimeMillis: 1650064200426,
+            }
+        });
+        // console.log(result);
+        stepArray = result.data.bucket;
+        
+    } catch (err) {
+        console.log(err);
+    }
+    try {
+        for (const dataSet of stepArray) {
+            for (const points of dataSet.dataset) {
+                for(const steps of points.point) {
+                    console.log(steps.value);
+                    yield put({type: 'SET_GOOGLE_STEPS', payload: steps.value[0].intVal})
+                }
+            }
+        }
+    } catch (err) {
+        console.log(err);
+        
+    }
+    try {
+        yield put({type: 'SET_USER_SCORE'})
+    } catch (error) {
+        console.log('post step score error - ', error);
+    }
 }
 
 function* addStepGoals(action) {

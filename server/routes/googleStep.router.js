@@ -54,21 +54,21 @@ router.get("/steps", async (req, res) => {
         // Client Secret
         process.env.GOOGLE_CLIENT_SECRET,
         // link to redirect to
-        "http://localhost:5000/getSteps/steps"
+        "http://localhost:3000/#/profile"
 
     );
 
-    const tokens = await oauth2Client.getToken(code);
+    // const tokens = await oauth2Client.getToken(code);
 
-    console.log(tokens);
-    res.send('Hello')
+    // console.log(tokens);
+    
 
     let stepArray = [];
     try{
         const result = await axios({
             method: "POST",
             headers: {
-                authorization: "Bearer " + tokens.tokens.access_token
+                authorization: "Bearer " + access_token_goes_here
             }, 
             "Content-Type": "application/json",
             url: `https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
@@ -89,14 +89,13 @@ router.get("/steps", async (req, res) => {
         
     } catch (err) {
         console.log(err);
-        
     }
     try {
         for (const dataSet of stepArray) {
             for (const points of dataSet.dataset) {
                 for(const steps of points.point) {
                     console.log(steps.value);
-                    
+                    res.send(steps.value)
                 }
             }
         }
@@ -104,6 +103,7 @@ router.get("/steps", async (req, res) => {
         console.log(err);
         
     }
+    
 });
 
 /**

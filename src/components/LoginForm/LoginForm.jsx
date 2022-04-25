@@ -21,9 +21,6 @@ function LoginForm() {
     
   }, [])
 
-  // const accessToken = gapi.auth.getToken().access_token;
-
-  //   console.log(accessToken);
 
 
   const [username, setUsername] = useState('');

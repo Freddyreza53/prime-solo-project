@@ -25,12 +25,12 @@ function QuickStepHomePage() {
     //     console.log('start clicked');
     // }
 
-    // const handleClick = () => {
-    //     console.log('clicked');
-    //     axios.get('/getSteps/steps').then (result => {
-    //         console.log(result.data.url);
-    //     })
-    // }
+    const handleClick = () => {
+        console.log('clicked');
+        axios.get('/getSteps/steps').then (result => {
+            console.log(result.data);
+        })
+    }
 
     return (
         <div className="homePageDiv">
@@ -45,7 +45,7 @@ function QuickStepHomePage() {
                 <button className="modeButton" value="Challenge" onClick={(event) => handleClicked(event.target.value)}>CHALLENGE</button>
             </div>
             {/* <button className="stepButton" onClick={handleStart}>Start</button> */}
-            {/* <button onClick={handleClick}>Click Me For Steps</button> */}
+            <button onClick={handleClick}>Click Me For Steps</button>
         </div>
     )
 }

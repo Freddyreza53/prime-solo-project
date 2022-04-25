@@ -13,6 +13,11 @@ function GoogleLoginButton() {
         console.log('Login Success! Current user: ', res.profileObj.googleId);
         console.log('Login Success! Current user: ', res.profileObj.name);
 
+        // dispatch({
+        //     type: 'GET_GOOGLE_STEPS',
+        //     payload: gapi.auth.getToken().access_token
+        // })
+
         dispatch({
             type: 'LOGIN',
             payload: {
@@ -20,6 +25,10 @@ function GoogleLoginButton() {
                 password: res.profileObj.googleId,
             }
         })
+
+        // const accessToken = gapi.auth.getToken().access_token;
+
+        // console.log(accessToken);
     }
 
     const onFailure = (res) => {
