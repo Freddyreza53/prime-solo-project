@@ -7,6 +7,10 @@ import Countdown from 'react-countdown';
 
 function ScorePage() {
 
+    // useEffect(() => {
+
+    // }, [stepScore.steps])
+
     const history = useHistory();
     const dispatch = useDispatch();
     const stepScore = useSelector(store => store.currentSteps)
@@ -38,7 +42,9 @@ function ScorePage() {
                 <p>Awesome Job!</p>
                 <p>Mode: {mode.difficulty}</p>
                 <p>Step Count: {stepScore.steps}</p>
-                <p>Click Try Again if you want to try and get a better score. Otherwise, click Save to calculate your quickStep score!</p>
+                <p>Click Try Again if you want to try and get a better score. 
+                    Otherwise, click Save to calculate your quickStep score!</p>
+                {/* <button onClick={getScore}>getScore</button> */}
                 <button className="stepButton" onClick={handleTryAgain}>Try Again</button>
                 <button className="stepButton" onClick={handleSave}>Save</button>
             </div>

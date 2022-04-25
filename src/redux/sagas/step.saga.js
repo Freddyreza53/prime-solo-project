@@ -12,7 +12,7 @@ function* stepSagaWatcher() {
 
 function* getGoogleSteps(action) {
     let stepArray = [];
-    let stepCount = 0;
+    
     try{
         const result = yield axios({
             method: "POST",
@@ -35,12 +35,10 @@ function* getGoogleSteps(action) {
         });
         // console.log(result);
         stepArray = result.data.bucket;
-        
-    } catch (err) {
-        console.log(err);
-    }
-    try {
+        let stepCount = 0;
         for (const dataSet of stepArray) {
+            console.log('dataSet', dataSet);
+            
             for (const points of dataSet.dataset) {
                 for(const steps of points.point) {
                     console.log(steps.value);
@@ -48,15 +46,28 @@ function* getGoogleSteps(action) {
                 }
             }
         }
+        yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
     } catch (err) {
         console.log(err);
+    }
+    // try {
+    //     for (const dataSet of stepArray) {
+    //         for (const points of dataSet.dataset) {
+    //             for(const steps of points.point) {
+    //                 console.log(steps.value);
+    //                 stepCount = steps.value[0].intVal;
+    //             }
+    //         }
+    //     }
+    // } catch (err) {
+    //     console.log(err);
         
-    }
-    try {
-        yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
-    } catch (error) {
-        console.log('post step score error - ', error);
-    }
+    // }
+    // try {
+    //     yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
+    // } catch (error) {
+    //     console.log('post step score error - ', error);
+    // }
 }
 
 function* addStepGoals(action) {
