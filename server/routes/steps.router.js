@@ -53,6 +53,24 @@ router.get(`/myScores/:difficulty`, rejectUnauthenticated, (req, res) => {
   
 });
 
+router.get(`/users`, rejectUnauthenticated, (req, res) => {
+  // GET route code here
+
+  let queryText = `
+    SELECT "id", "username" FROM "user"
+    ORDER BY UPPER("username") ASC;
+  `;
+
+      pool.query(queryText)
+      .then(result => {
+          res.send(result.rows)
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
+    
+});
+
 /**
  * POST route template
  */
