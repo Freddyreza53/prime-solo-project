@@ -9,7 +9,7 @@ function GameDonePage() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const token = useSelector(store => store.tokenReducer);
+    const token = useSelector(store => store.tokenReducer.token);
     const time = useSelector(store => store.currentSteps)
 
     const handleSave = () => {

@@ -54,13 +54,13 @@ router.get("/steps", async (req, res) => {
         // Client Secret
         process.env.GOOGLE_CLIENT_SECRET,
         // link to redirect to
-        "http://localhost:3000/#/profile"
+        "http://localhost:5000/getSteps/steps"
 
     );
 
-    // const tokens = await oauth2Client.getToken(code);
+    const tokens = await oauth2Client.getToken(code);
 
-    // console.log(tokens);
+    console.log(tokens);
     
 
     let stepArray = [];
