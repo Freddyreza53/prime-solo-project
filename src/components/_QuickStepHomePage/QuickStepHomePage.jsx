@@ -8,6 +8,7 @@ function QuickStepHomePage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const token = useSelector(store => store.tokenReducer);
     // const [clicked, setClicked] = useState(false);
     
 
@@ -16,6 +17,10 @@ function QuickStepHomePage() {
         dispatch({
             type: 'SET_MODE',
             payload: modeSelected
+        })
+        dispatch({
+            type: 'PUT_TOKEN',
+            payload: token
         })
 
         history.push('/gameStart');

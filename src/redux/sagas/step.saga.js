@@ -8,6 +8,26 @@ function* stepSagaWatcher() {
     yield takeEvery('GET_TOP_SCORES', getTopScores);
     yield takeEvery('PUT_STEP_GOALS', addStepGoals);
     yield takeEvery('GET_GOOGLE_STEPS', getGoogleSteps);
+    yield takeEvery('PUT_TOKEN', addToken);
+    yield takeEvery('GET_TOKEN', getToken);
+}
+
+function* getToken() {
+    try {
+        let token = yield axios.get(`/steps/token`);
+        yield put({type: 'SET_TOKEN', payload: token.data})
+    } catch (error) {
+        console.log('get step score error - ', error);
+    }
+}
+
+function* addToken(action) {
+    try {
+        yield axios.put('/steps/token', action.payload);
+        // yield put({type: 'GET_TOKEN'})
+    } catch (error) {
+        console.log('post step score error - ', error);
+    }
 }
 
 function* getGoogleSteps(action) {
@@ -72,7 +92,7 @@ function* getGoogleSteps(action) {
 
 function* addStepGoals(action) {
     try {
-        yield axios.put(`/steps`, action.payload);
+        yield axios.put(`/steps/edit`, action.payload);
         yield put({type: 'CLEAR_USER_TO_EDIT'})
         yield put({type: 'FETCH_USER'})
         // yield put({type: 'SET_USER'})

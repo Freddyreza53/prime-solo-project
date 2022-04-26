@@ -14,11 +14,6 @@ function GoogleLoginButton() {
         console.log('Login Success! Current user: ', res.profileObj.name);
 
         dispatch({
-            type: 'SET_TOKEN',
-            payload: gapi.auth.getToken().access_token
-        })
-
-        dispatch({
             type: 'LOGIN',
             payload: {
                 username: res.profileObj.name,
@@ -26,6 +21,12 @@ function GoogleLoginButton() {
             }
         })
 
+        dispatch({
+            type: 'SET_TOKEN',
+            payload: {
+                token: gapi.auth.getToken().access_token
+            }
+        })
         // const accessToken = gapi.auth.getToken().access_token;
 
         // console.log(accessToken);

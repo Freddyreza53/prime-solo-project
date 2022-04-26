@@ -77,7 +77,29 @@ router.post('/', rejectUnauthenticated,(req, res) => {
       });
 });
 
-router.put('/', rejectUnauthenticated,(req, res) => {
+router.put('/token', rejectUnauthenticated,(req, res) => {
+  // POST route code here
+  console.log('req.body is:', req.body);
+
+  let queryText = `
+    UPDATE "user"
+    SET "token" = $1
+    WHERE "id" = $2;
+  `;
+
+  let values = [req.body.token, req.user.id]
+
+  pool.query(queryText, values)
+      .then(result => {
+      res.sendStatus(201)
+      
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
+});
+
+router.put('/edit', rejectUnauthenticated,(req, res) => {
   // POST route code here
     console.log('req.body is:', req.body);
 
