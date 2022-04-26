@@ -30,6 +30,7 @@ import CountdownGamePage from '../_CountdownGamePage/CountdownGamePage';
 import GameDonePage from '../_GameDonePage/GameDonePage';
 import ScorePage from '../_ScorePage/ScorePage';
 import ProfilePage from '../_ProfilePage/ProfilePage';
+import ChallengeModePage from '../_ChallengeModePage/ChallengeModePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -140,6 +141,14 @@ function App() {
             path="/profile"
           >
             <ProfilePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/challengeMode"
+          >
+            <ChallengeModePage />
           </ProtectedRoute>
 
           <ProtectedRoute

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 import GoogleLogoutButton from '../LoginForm/GoogleLogoutButton';
 import './ProfilePage.css'
 
@@ -23,6 +24,9 @@ function ProfilePage() {
 
     const handleSave = () => {
         console.log('save clicked');
+        swal("Saved!", "You saved your goals!", "success", {
+            button: "Okay!",
+        });
         dispatch({
             type: 'PUT_STEP_GOALS',
             payload: editUser
