@@ -10,7 +10,8 @@ function GoogleLogoutButton() {
 
     const onSuccess = (res) => {
         console.log('Logout Successful!');
-        dispatch({ type: 'LOGOUT' })
+        dispatch ({ type: 'REMOVE_TOKEN'})
+        // dispatch({ type: 'LOGOUT' })
     }
 
     return (

@@ -9,14 +9,15 @@ function GameDonePage() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const token = useSelector(store => store.tokenReducer.token);
+    // const token = useSelector(store => store.tokenReducer.token);
+    const user = useSelector(store => store.user)
     const time = useSelector(store => store.currentSteps)
 
     const handleSave = () => {
         dispatch({
             type: 'GET_GOOGLE_STEPS',
             payload: {
-                token: token,
+                token: user.token,
                 startTime: time.startTime,
                 endTime: time.endTime
             }
