@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 import './MyScoreboardPage.css'
 
 function MyScoreboardPage() {
@@ -26,13 +27,30 @@ function MyScoreboardPage() {
 
     const handleDelete = (scoreToDelete) => {
         console.log('delete clicked');
-        dispatch({
-            type: 'DELETE_SCORE',
-            payload: {
-                id: scoreToDelete.id,
-                difficulty: scoreToDelete.difficulty
-            }
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
         })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your step score has been deleted!", {
+                        icon: "success",
+                    });
+                    dispatch({
+                        type: 'DELETE_SCORE',
+                        payload: {
+                            id: scoreToDelete.id,
+                            difficulty: scoreToDelete.difficulty
+                        }
+                    })
+                } else {
+                    swal("Your step score is safe!");
+                }
+            });
+        
     }
 
     const getTopScores = () => {
@@ -66,7 +84,7 @@ function MyScoreboardPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {myScoreboard.map( (stepScore, index )=> {
+                            {myScoreboard.map((stepScore, index) => {
                                 return (
                                     <tr key={stepScore.id}>
                                         <td>{index + 1}</td>

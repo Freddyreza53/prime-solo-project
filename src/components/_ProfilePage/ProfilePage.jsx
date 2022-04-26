@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import GoogleLogoutButton from '../LoginForm/GoogleLogoutButton';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './ProfilePage.css'
 
 function ProfilePage() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
     const user = useSelector(store => store.user);
     const editUser = useSelector(store => store.editProfileReducer)
 
@@ -80,11 +78,10 @@ function ProfilePage() {
                                                     onChange={(event) => handleChange(event, 'hard_goal')}
                                                 /> 
                                                 :user.hard_goal}</span></p>
-
+                <div className="buttonDiv">
                 {editMode ? <button className="stepButton" onClick={handleSave}>save</button> : <button className="stepButton" onClick={handleUpdate}>Update</button>}
-                {/* <LogOutButton className="stepButton"/> */}
                 <GoogleLogoutButton />
-                
+                </div>
             </div>
         </div>
     )
