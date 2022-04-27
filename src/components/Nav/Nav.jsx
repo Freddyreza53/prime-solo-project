@@ -19,7 +19,7 @@ import { MdLogin } from 'react-icons/md';
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: "414px",
     position: 'fixed',
     bottom: 0,
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 function Nav() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const user = useSelector((store) => store.user);
   const history = useHistory();
