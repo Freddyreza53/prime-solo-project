@@ -7,9 +7,20 @@ import React from 'react';
 
 function AboutPage() {
   return (
-    <div className="container">
+    <div className="profileContainer">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <h1>Technologies Used:</h1>
+        <ul>
+          <li>React</li>
+          <li>Redux</li>
+          <li>Redux-Saga</li>
+          <li>Node</li>
+          <li>Express</li>
+          <li>Material UI</li>
+          <li>Google Fit API and Login</li>
+        </ul>
+      <h1>Next..</h1>
+      <p>Challenge Mode</p>
       </div>
     </div>
   );

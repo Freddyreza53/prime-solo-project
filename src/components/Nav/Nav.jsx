@@ -66,29 +66,29 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          showLabels
-          className={classes.root}
-          >
-          <BottomNavigationAction 
-            label="Scoreboard" 
-            icon={<MdLeaderboard size={30}/>} 
-            onClick={() => history.push("/myScoreboard")}
-          />
-          <BottomNavigationAction 
-            label="Play" 
-            icon={<FaPlay size={26}/>} 
-            onClick={() => history.push("/quickStepHome")}
-          />
-          <BottomNavigationAction 
-            label="Profile" 
-            icon={<BsPersonFill size={30} />}
-            onClick={() => history.push("/profile")}
-          />
-        </BottomNavigation>
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            showLabels
+            className={classes.root}
+            >
+            <BottomNavigationAction 
+              label="Scoreboard" 
+              icon={<MdLeaderboard size={30}/>} 
+              onClick={() => history.push("/myScoreboard")}
+            />
+            <BottomNavigationAction 
+              label="Play" 
+              icon={<FaPlay size={26}/>} 
+              onClick={() => history.push("/quickStepHome")}
+            />
+            <BottomNavigationAction 
+              label="Profile" 
+              icon={<BsPersonFill size={30} />}
+              onClick={() => history.push("/profile")}
+            />
+          </BottomNavigation>
           // <>
           //   <Link className="navLink" to="/quickStepHome">
           //     Home
