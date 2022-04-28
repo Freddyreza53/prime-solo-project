@@ -2,21 +2,27 @@ html,
 body,
 #react-root {
   height: 100%;
+
 }
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0px;
+  /* margin: 0px; */
   background-image: url("../../../public/images/running-background.jpeg");
   background-repeat: no-repeat;
-  background-position: 0%;
-  background-size: 600px 1000px;
+  background-position: center;
+  background-size: 414px 1000px;
+  max-width: 414px;
+  margin: auto;
+  
 }
 
 .bodyContainer {
   background-color: rgba(0, 0, 0, 0.25);
-  height: 100%;
+  min-height: 100%;
   width: 100%;
+  /* position: absolute; */
+  
 }
 
 img {
@@ -30,6 +36,10 @@ Container
 
 .container {
   padding: 20px;
+}
+
+.loginDiv {
+  display: flex;
 }
 
 /* --------------------------------------------------------------------------------

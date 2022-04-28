@@ -1,8 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+
+import { gapi } from 'gapi-script';
+import GoogleRegisterButton from './GoogleRegisterButton';
+
 function RegisterForm() {
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope: "https://www.googleapis.com/auth/fitness.activity.read profile email openid"
+      })
+    };
+    gapi.load('client:auth2', start)
+    
+  }, [])
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
@@ -12,13 +28,16 @@ function RegisterForm() {
   const registerUser = (event) => {
     event.preventDefault();
 
-    dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-      },
-    });
+
+
+  //   dispatch({
+  //     type: 'REGISTER',
+  //     payload: {
+  //       username: username,
+  //       password: password,
+
+  //     },
+  //   });
   }; // end registerUser
 
   return (
@@ -64,6 +83,7 @@ function RegisterForm() {
         >
           Login
         </button>
+        <GoogleRegisterButton />
       </div>
     </form>
   );

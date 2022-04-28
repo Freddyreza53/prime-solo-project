@@ -7,11 +7,92 @@ function* stepSagaWatcher() {
     yield takeEvery('GET_SCORES', getMyScores);
     yield takeEvery('GET_TOP_SCORES', getTopScores);
     yield takeEvery('PUT_STEP_GOALS', addStepGoals);
+    yield takeEvery('GET_GOOGLE_STEPS', getGoogleSteps);
+    yield takeEvery('PUT_TOKEN', addToken);
+    yield takeEvery('REMOVE_TOKEN', removeToken);
+}
+
+function* removeToken() {
+    try {
+        yield axios.put(`/steps/removeToken`);
+        yield put({ type: 'LOGOUT' })
+    } catch (error) {
+        console.log('get step score error - ', error);
+    }
+}
+
+function* addToken(action) {
+    try {
+        yield axios.put('/steps/token', action.payload);
+        yield put({type: 'FETCH_USER'})
+    } catch (error) {
+        console.log('post step score error - ', error);
+    }
+}
+
+function* getGoogleSteps(action) {
+    let stepArray = [];
+    
+    try{
+        const result = yield axios({
+            method: "POST",
+            headers: {
+                authorization: "Bearer " + action.payload.token
+            }, 
+            "Content-Type": "application/json",
+            url: `https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+            data: {
+                aggregateBy: [
+                    {
+                        dataTypeName: "com.google.step_count.delta",
+                        dataSourceId: "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+                    }
+                ],
+                bucketByTime: {durationMillis: 86400000},
+                startTimeMillis: 1651156684024,
+                endTimeMillis: 1651156696024,
+            }
+        });
+        // console.log(result);
+        stepArray = result.data.bucket;
+        let stepCount = 0;
+        for (const dataSet of stepArray) {
+            console.log('dataSet', dataSet);
+            
+            for (const points of dataSet.dataset) {
+                for(const steps of points.point) {
+                    console.log(steps.value);
+                    stepCount = steps.value[0].intVal;
+                }
+            }
+        }
+        yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
+    } catch (err) {
+        console.log(err);
+    }
+    // try {
+    //     for (const dataSet of stepArray) {
+    //         for (const points of dataSet.dataset) {
+    //             for(const steps of points.point) {
+    //                 console.log(steps.value);
+    //                 stepCount = steps.value[0].intVal;
+    //             }
+    //         }
+    //     }
+    // } catch (err) {
+    //     console.log(err);
+        
+    // }
+    // try {
+    //     yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
+    // } catch (error) {
+    //     console.log('post step score error - ', error);
+    // }
 }
 
 function* addStepGoals(action) {
     try {
-        yield axios.put(`/steps`, action.payload);
+        yield axios.put(`/steps/edit`, action.payload);
         yield put({type: 'CLEAR_USER_TO_EDIT'})
         yield put({type: 'FETCH_USER'})
         // yield put({type: 'SET_USER'})

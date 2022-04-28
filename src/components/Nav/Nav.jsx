@@ -19,7 +19,7 @@ import { MdLogin } from 'react-icons/md';
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: "414px",
     position: 'fixed',
     bottom: 0,
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 function Nav() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(1);
 
   const user = useSelector((store) => store.user);
   const history = useHistory();
@@ -66,29 +66,29 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <BottomNavigation
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-          showLabels
-          className={classes.root}
-          >
-          <BottomNavigationAction 
-            label="Scoreboard" 
-            icon={<MdLeaderboard size={30}/>} 
-            onClick={() => history.push("/myScoreboard")}
-          />
-          <BottomNavigationAction 
-            label="Play" 
-            icon={<FaPlay size={26}/>} 
-            onClick={() => history.push("/quickStepHome")}
-          />
-          <BottomNavigationAction 
-            label="Profile" 
-            icon={<BsPersonFill size={30} />}
-            onClick={() => history.push("/profile")}
-          />
-        </BottomNavigation>
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            showLabels
+            className={classes.root}
+            >
+            <BottomNavigationAction 
+              label="Scoreboard" 
+              icon={<MdLeaderboard size={30}/>} 
+              onClick={() => history.push("/myScoreboard")}
+            />
+            <BottomNavigationAction 
+              label="Play" 
+              icon={<FaPlay size={26}/>} 
+              onClick={() => history.push("/quickStepHome")}
+            />
+            <BottomNavigationAction 
+              label="Profile" 
+              icon={<BsPersonFill size={30} />}
+              onClick={() => history.push("/profile")}
+            />
+          </BottomNavigation>
           // <>
           //   <Link className="navLink" to="/quickStepHome">
           //     Home

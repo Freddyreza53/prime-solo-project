@@ -53,6 +53,24 @@ router.get(`/myScores/:difficulty`, rejectUnauthenticated, (req, res) => {
   
 });
 
+router.get(`/users`, rejectUnauthenticated, (req, res) => {
+  // GET route code here
+
+  let queryText = `
+    SELECT "id", "username" FROM "user"
+    ORDER BY UPPER("username") ASC;
+  `;
+
+      pool.query(queryText)
+      .then(result => {
+          res.send(result.rows)
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
+    
+});
+
 /**
  * POST route template
  */
@@ -77,7 +95,57 @@ router.post('/', rejectUnauthenticated,(req, res) => {
       });
 });
 
-router.put('/', rejectUnauthenticated,(req, res) => {
+router.put('/removeToken', rejectUnauthenticated,(req, res) => {
+  // POST route code here
+  console.log('req.body is:', req.body);
+
+    let queryText = `
+    UPDATE "user"
+    SET "token" = ''
+    WHERE "id" = $1;
+  `;
+
+  let values = [req.user.id]
+
+  pool.query(queryText, values)
+      .then(result => {
+      res.sendStatus(201)
+      
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
+  
+});
+
+router.put('/token', rejectUnauthenticated,(req, res) => {
+  // POST route code here
+  console.log('req.body is:', req.body);
+  if (req.body.token) {
+    let queryText = `
+    UPDATE "user"
+    SET "token" = $1
+    WHERE "id" = $2;
+  `;
+
+  let values = [req.body.token, req.user.id]
+
+  pool.query(queryText, values)
+      .then(result => {
+      res.sendStatus(201)
+      
+      }).catch(err => { 
+      res.sendStatus(500);
+      // For testing only, can be removed
+      });
+  } else {
+    res.sendStatus(200);
+  }
+
+  
+});
+
+router.put('/edit', rejectUnauthenticated,(req, res) => {
   // POST route code here
     console.log('req.body is:', req.body);
 

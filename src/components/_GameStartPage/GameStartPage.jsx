@@ -10,17 +10,18 @@ function GameStartPage() {
     const history = useHistory();
     const currentMode = useSelector(store => store.mode);
 
-    const [currentSteps, setCurrentSteps] = useState('');
+    // const [startTime, setStartTime] = useState('');
 
     const handleStart = () => {
-        console.log(currentSteps);
         dispatch({
-            type: 'SET_STEPS',
-            payload: currentSteps
+            type: 'SET_STEP_TIME',
+            payload: {
+                startTime: (Date.now() + 3000),
+                endTime: (Date.now() + (currentMode.time * 1000))
+            }
         })
 
         history.push('/countdown')
-        setCurrentSteps('')
     }
 
     return (
@@ -30,17 +31,21 @@ function GameStartPage() {
             </div>
             <div className="profileContainer">
                 <h2>{currentMode.difficulty}</h2>
-                <p>Try and get as many steps as you can within {currentMode.time} seconds!</p>
-                <p>Please enter current step count on your phone/pedometer:</p>
-                <div>
-                    <label>Current Steps</label>
+                <p>Try and get as many steps as you can within {currentMode.time} seconds! 
+                    make sure your phone is on and in your pocket/hand during the {currentMode.time} seconds.
+                    Once you are ready to start stepping, click start and the countdown will begin. 
+                    Have fun!
+                </p>
+                {/* <div>
+                    <label>Current Steps: </label>
                     <input 
                         type="number" 
-                        placeholder="Current Steps" 
+                        className="inputSize"
+                        placeholder="Steps" 
                         value={currentSteps} 
                         onChange={(event) => setCurrentSteps(event.target.value)}
                     />
-                </div>
+                </div> */}
                 <p>Once you're ready to start stepping, click start and have fun!</p>
                 <button className="stepButton" onClick={handleStart}>Start</button>
             </div>

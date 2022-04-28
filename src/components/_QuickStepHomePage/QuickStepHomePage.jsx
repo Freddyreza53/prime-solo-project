@@ -8,6 +8,7 @@ function QuickStepHomePage() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const token = useSelector(store => store.tokenReducer);
     // const [clicked, setClicked] = useState(false);
     
 
@@ -17,8 +18,17 @@ function QuickStepHomePage() {
             type: 'SET_MODE',
             payload: modeSelected
         })
+        dispatch({
+            type: 'PUT_TOKEN',
+            payload: token
+        })
 
         history.push('/gameStart');
+    }
+
+    const challengeClicked = () => {
+        console.log('challenge clicked');
+        history.push('/challengeMode');
     }
 
     // const handleStart = () => {
@@ -27,8 +37,8 @@ function QuickStepHomePage() {
 
     // const handleClick = () => {
     //     console.log('clicked');
-    //     axios.get('/getSteps').then (result => {
-    //         console.log(result.data.url);
+    //     axios.get('/getSteps/steps').then (result => {
+    //         console.log(result.data);
     //     })
     // }
 
@@ -42,7 +52,7 @@ function QuickStepHomePage() {
                 <button className="modeButton" value="Medium" onClick={(event) => handleClicked(event.target.value)}>MEDIUM</button>
                 
                 <button className="modeButton" value="Hard" onClick={(event) => handleClicked(event.target.value)}>HARD</button>
-                <button className="modeButton" value="Challenge" onClick={(event) => handleClicked(event.target.value)}>CHALLENGE</button>
+                <button className="modeButton" onClick={challengeClicked}>CHALLENGE</button>
             </div>
             {/* <button className="stepButton" onClick={handleStart}>Start</button> */}
             {/* <button onClick={handleClick}>Click Me For Steps</button> */}

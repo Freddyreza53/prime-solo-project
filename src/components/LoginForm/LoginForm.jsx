@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+
+// Google Authentication imports
+import GoogleLoginButton from './GoogleLoginButton';
+import { gapi } from 'gapi-script';
+
 function LoginForm() {
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        scope: "https://www.googleapis.com/auth/fitness.activity.read profile email openid"
+      })
+    };
+    gapi.load('client:auth2', start)
+    
+  }, [])
+
+
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
@@ -70,6 +89,7 @@ function LoginForm() {
         >
           Register
         </button>
+        <GoogleLoginButton />
       </div>
     </form>
   );

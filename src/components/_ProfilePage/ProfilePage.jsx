@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
+import GoogleLogoutButton from '../LoginForm/GoogleLogoutButton';
 import './ProfilePage.css'
 
 function ProfilePage() {
@@ -22,6 +25,9 @@ function ProfilePage() {
 
     const handleSave = () => {
         console.log('save clicked');
+        swal("Saved!", "You saved your goals!", "success", {
+            button: "Okay!",
+        });
         dispatch({
             type: 'PUT_STEP_GOALS',
             payload: editUser
@@ -45,9 +51,10 @@ function ProfilePage() {
                 <h1>quickStep</h1>
             </div>
             <div className="profileContainer">
-                <h2>quickStep Profile</h2>
-                <p>UserName: <span>{user.username}</span></p>
-                <p>Daily Step Goal: <span>{editMode ? <input 
+                <img src={user.picture} alt="Profile Picture" />
+                <h2>My Profile</h2>
+                <p className="profileP">UserName: <span>{user.username}</span></p>
+                <p className="profileP">Daily Step Goal: <span>{editMode ? <input 
                                                     type="number" 
                                                     className="inputSize"
                                                     value={editUser.daily_goal} 
@@ -55,31 +62,31 @@ function ProfilePage() {
                                                 /> 
                                                 :
                                                 user.daily_goal}</span></p>
-                <p>Daily quickStep Easy Goal: <span>{editMode ? <input 
+                <p className="profileP">Daily quickStep Easy Goal: <span>{editMode ? <input 
                                                     type="number"
                                                     className="inputSize" 
                                                     value={editUser.easy_goal} 
                                                     onChange={(event) => handleChange(event, 'easy_goal')}
                                                 /> 
                                                 :user.easy_goal}</span></p>
-                <p>Daily quickStep Medium Goal: <span>{editMode ? <input 
+                <p className="profileP">Daily quickStep Medium Goal: <span>{editMode ? <input 
                                                     type="number"
                                                     className="inputSize" 
                                                     value={editUser.medium_goal} 
                                                     onChange={(event) => handleChange(event, 'medium_goal')}
                                                 /> 
                                                 :user.medium_goal}</span></p>
-                <p>Daily quickStep Hard Goal: <span>{editMode ? <input 
+                <p className="profileP">Daily quickStep Hard Goal: <span>{editMode ? <input 
                                                     type="number" 
                                                     className="inputSize"
                                                     value={editUser.hard_goal} 
                                                     onChange={(event) => handleChange(event, 'hard_goal')}
                                                 /> 
                                                 :user.hard_goal}</span></p>
-
+                <div className="buttonDiv">
                 {editMode ? <button className="stepButton" onClick={handleSave}>save</button> : <button className="stepButton" onClick={handleUpdate}>Update</button>}
-                <LogOutButton className="stepButton"/>
-                
+                <GoogleLogoutButton />
+                </div>
             </div>
         </div>
     )
