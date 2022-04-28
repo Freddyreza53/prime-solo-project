@@ -80,7 +80,7 @@ function ChallengeModePage() {
                     )
                 })}
                 </select>
-                {/* <FormControl >
+                <FormControl >
                     <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
                     <NativeSelect
                     id="demo-customized-select-native"
@@ -93,7 +93,7 @@ function ChallengeModePage() {
                     <option value={20}>Twenty</option>
                     <option value={30}>Thirty</option>
                     </NativeSelect>
-                </FormControl> */}
+                </FormControl>
 
                 <p>Click next once you're ready to begin the challenge!</p>
                 <button className="stepButton" onClick={handleNext}>Next</button>
