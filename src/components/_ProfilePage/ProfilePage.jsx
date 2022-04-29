@@ -8,9 +8,17 @@ import './ProfilePage.css'
 
 function ProfilePage() {
 
+    useEffect(() => {
+        dispatch({
+            type: 'GET_DAILY_GOOGLE_STEPS',
+            payload: user.token
+        } )
+    }, [])
+
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
-    const editUser = useSelector(store => store.editProfileReducer)
+    const editUser = useSelector(store => store.editProfileReducer);
+    const dailyGoal = useSelector(store => store.userStepGoalsReducer);
 
     const [editMode, setEditMode] = useState(false);
 
@@ -61,7 +69,7 @@ function ProfilePage() {
                                                     onChange={(event) => handleChange(event, 'daily_goal')}
                                                 /> 
                                                 :
-                                                user.daily_goal}</span></p>
+                                                `${dailyGoal.dailyStepGoal}/${user.daily_goal}`}</span></p>
                 <p className="profileP">Daily quickStep Easy Goal: <span>{editMode ? <input 
                                                     type="number"
                                                     className="inputSize" 

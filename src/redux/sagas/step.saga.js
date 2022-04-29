@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* stepSagaWatcher() {
@@ -8,6 +8,7 @@ function* stepSagaWatcher() {
     yield takeEvery('GET_TOP_SCORES', getTopScores);
     yield takeEvery('PUT_STEP_GOALS', addStepGoals);
     yield takeEvery('GET_GOOGLE_STEPS', getGoogleSteps);
+    yield takeLatest('GET_DAILY_GOOGLE_STEPS', getDailyGoogleSteps);
     yield takeEvery('PUT_TOKEN', addToken);
     yield takeEvery('REMOVE_TOKEN', removeToken);
 }
@@ -27,6 +28,48 @@ function* addToken(action) {
         yield put({type: 'FETCH_USER'})
     } catch (error) {
         console.log('post step score error - ', error);
+    }
+}
+
+function* getDailyGoogleSteps(action) {
+    let stepArray = [];
+    let msSinceMidnight= new Date()-new Date().setHours(0,0,0,0);
+    try{
+        const result = yield axios({
+            method: "POST",
+            headers: {
+                authorization: "Bearer " + action.payload
+            }, 
+            "Content-Type": "application/json",
+            url: `https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+            data: {
+                aggregateBy: [
+                    {
+                        dataTypeName: "com.google.step_count.delta",
+                        dataSourceId: "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
+                    }
+                ],
+                bucketByTime: {durationMillis: 86400000},
+                startTimeMillis: Date.now() - msSinceMidnight,
+                endTimeMillis: Date.now(),
+            }
+        });
+        // console.log(result);
+        stepArray = result.data.bucket;
+        let stepCount = 0;
+        for (const dataSet of stepArray) {
+            console.log('dataSet', dataSet);
+            
+            for (const points of dataSet.dataset) {
+                for(const steps of points.point) {
+                    console.log(steps.value);
+                    stepCount = steps.value[0].intVal;
+                }
+            }
+        }
+        yield put({type: 'SET_DAILY_GOOGLE_STEPS', payload: stepCount})
+    } catch (err) {
+        console.log(err);
     }
 }
 
@@ -70,24 +113,6 @@ function* getGoogleSteps(action) {
     } catch (err) {
         console.log(err);
     }
-    // try {
-    //     for (const dataSet of stepArray) {
-    //         for (const points of dataSet.dataset) {
-    //             for(const steps of points.point) {
-    //                 console.log(steps.value);
-    //                 stepCount = steps.value[0].intVal;
-    //             }
-    //         }
-    //     }
-    // } catch (err) {
-    //     console.log(err);
-        
-    // }
-    // try {
-    //     yield put({type: 'SET_GOOGLE_STEPS', payload: stepCount})
-    // } catch (error) {
-    //     console.log('post step score error - ', error);
-    // }
 }
 
 function* addStepGoals(action) {
