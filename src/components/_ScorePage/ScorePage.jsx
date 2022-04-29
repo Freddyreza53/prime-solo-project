@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import './GameStartPage.css'
-import axios from 'axios';
-import Countdown from 'react-countdown';
+import swal from 'sweetalert';
 
 function ScorePage() {
 
@@ -18,6 +16,15 @@ function ScorePage() {
     const user = useSelector(store => store.user)
 
     const handleSave = () => {
+        if (stepScore.steps == goal){ 
+            swal("Goal Achieved!", "You reached your daily easy mode goal!", "success", {
+                button: "Okay!",
+            });
+        } else {
+            swal("Saved!", "You saved your score!", "success", {
+                button: "Okay!",
+            });
+        }
         dispatch({
             type: 'POST_STEP_SCORE',
             payload: {
@@ -32,7 +39,22 @@ function ScorePage() {
     const handleTryAgain = () => {
         history.push('/gameStart')
     }
-    console.log(stepScore.steps);
+    
+    let goal;
+    switch (mode.difficulty) {
+        case 'Easy':
+            goal = user.easy_goal;
+            break;
+        case 'Medium':
+            goal = user.medium_goal;
+            break;
+        case 'Hard':
+            goal = user.hard_goal;
+            break;
+        default:
+            break;
+    }
+
     return (
         <div className="GameStartPageDiv">
             <div className="homePageTitle">
@@ -42,7 +64,7 @@ function ScorePage() {
                 <h1>Score</h1>
                 <p>Awesome Job!</p>
                 <p>Mode: {mode.difficulty}</p>
-                <p>Step Count: {stepScore.steps == user.easy_goal ? `${stepScore.steps} GOAL ACHIEVED!` : stepScore.steps}</p>
+                <p>Step Count: {stepScore.steps}</p>
                 <p>Click Try Again if you want to try and get a better score. 
                     Otherwise, click Save to calculate your quickStep score!</p>
                 {/* <button onClick={getScore}>getScore</button> */}
