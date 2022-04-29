@@ -15,6 +15,7 @@ function ScorePage() {
     const dispatch = useDispatch();
     const stepScore = useSelector(store => store.currentSteps)
     const mode = useSelector(store => store.mode)
+    const user = useSelector(store => store.user)
 
     const handleSave = () => {
         dispatch({
@@ -31,7 +32,7 @@ function ScorePage() {
     const handleTryAgain = () => {
         history.push('/gameStart')
     }
-
+    console.log(stepScore.steps);
     return (
         <div className="GameStartPageDiv">
             <div className="homePageTitle">
@@ -41,7 +42,7 @@ function ScorePage() {
                 <h1>Score</h1>
                 <p>Awesome Job!</p>
                 <p>Mode: {mode.difficulty}</p>
-                <p>Step Count: {stepScore.steps}</p>
+                <p>Step Count: {stepScore.steps == user.easy_goal ? `${stepScore.steps} GOAL ACHIEVED!` : stepScore.steps}</p>
                 <p>Click Try Again if you want to try and get a better score. 
                     Otherwise, click Save to calculate your quickStep score!</p>
                 {/* <button onClick={getScore}>getScore</button> */}
