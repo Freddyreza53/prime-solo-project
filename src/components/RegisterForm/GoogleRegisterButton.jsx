@@ -31,13 +31,13 @@ function GoogleRegisterButton() {
 
     return (
         <div>
-            <h2>Register User</h2>
+            <h1>Register</h1>
             {errors.registrationMessage && (
                 <h3 className="alert" role="alert">
                 {errors.registrationMessage}
                 </h3>
             )}
-            <h1>Google Login Here</h1>
+            <h2>Login with Google to register</h2>
             <GoogleLogin 
                 client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 buttonText="Login"

@@ -16,7 +16,7 @@ function ScorePage() {
     const user = useSelector(store => store.user)
 
     const handleSave = () => {
-        if (stepScore.steps == goal){ 
+        if (stepScore.steps >= goal){ 
             swal("Goal Achieved!", "You reached your daily easy mode goal!", "success", {
                 button: "Okay!",
             });

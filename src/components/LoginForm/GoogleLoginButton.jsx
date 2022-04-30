@@ -40,7 +40,6 @@ function GoogleLoginButton() {
 
     return (
         <div>
-            <h1>Google Login Here</h1>
             <GoogleLogin 
                 client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                 buttonText="Login"

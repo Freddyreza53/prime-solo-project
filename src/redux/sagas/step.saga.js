@@ -75,6 +75,8 @@ function* getDailyGoogleSteps(action) {
 
 function* getGoogleSteps(action) {
     let stepArray = [];
+    // action.payload.startTime
+    // action.payload.endTime
     
     try{
         const result = yield axios({
