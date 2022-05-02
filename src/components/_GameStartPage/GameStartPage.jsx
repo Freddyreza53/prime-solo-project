@@ -17,7 +17,7 @@ function GameStartPage() {
             type: 'SET_STEP_TIME',
             payload: {
                 startTime: (Date.now() + 3000),
-                endTime: (Date.now() + (currentMode.time * 1000))
+                endTime: (Date.now() + 3000 + (currentMode.time * 1000))
             }
         })
 

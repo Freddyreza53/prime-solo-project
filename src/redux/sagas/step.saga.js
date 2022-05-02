@@ -94,8 +94,8 @@ function* getGoogleSteps(action) {
                     }
                 ],
                 bucketByTime: {durationMillis: 86400000},
-                startTimeMillis: 1651156684024,
-                endTimeMillis: 1651156696024,
+                startTimeMillis: action.payload.startTime,
+                endTimeMillis: action.payload.endTime,
             }
         });
         // console.log(result);

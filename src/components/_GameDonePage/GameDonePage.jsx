@@ -32,7 +32,9 @@ function GameDonePage() {
             </div>
             <div className="profileContainer">
                 <h1>Done!</h1>
-                <p>Click on Get Score to see how you did!</p>
+                <p>Please refresh your Google Fit app before Continuing. 
+                    Once refreshed, Click on Get Score to see how you did!
+                </p>
                 {/* <label>New Step Count: </label>
                 <input 
                     type="number" 
