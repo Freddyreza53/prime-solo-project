@@ -52,7 +52,7 @@ function QuickStepHomePage() {
                 <button className="modeButton" value="Medium" onClick={(event) => handleClicked(event.target.value)}>MEDIUM</button>
                 
                 <button className="modeButton" value="Hard" onClick={(event) => handleClicked(event.target.value)}>HARD</button>
-                <button className="modeButton" onClick={challengeClicked}>CHALLENGE</button>
+                <button className="modeButton" onClick={challengeClicked}>coming soon</button>
             </div>
             {/* <button className="stepButton" onClick={handleStart}>Start</button> */}
             {/* <button onClick={handleClick}>Click Me For Steps</button> */}

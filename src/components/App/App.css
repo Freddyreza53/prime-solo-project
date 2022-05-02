@@ -11,7 +11,7 @@ body {
   background-image: url("../../../public/images/running-background.jpeg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 414px 1000px;
+  background-size: 414px 1300px;
   max-width: 414px;
   margin: auto;
   
@@ -29,8 +29,7 @@ img {
   display: inline-block;
   max-width: 100%;
 }
-
-/* --------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */
 

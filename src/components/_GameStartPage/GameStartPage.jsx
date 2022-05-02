@@ -32,7 +32,7 @@ function GameStartPage() {
             <div className="profileContainer">
                 <h2>{currentMode.difficulty}</h2>
                 <p>Try and get as many steps as you can within {currentMode.time} seconds! 
-                    make sure your phone is on and in your pocket/hand during the {currentMode.time} seconds.
+                    Make sure your phone is on and in your pocket/hand during the {currentMode.time} seconds.
                     Once you are ready to start stepping, click start and the countdown will begin. 
                     Have fun!
                 </p>

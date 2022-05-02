@@ -12,11 +12,15 @@ function UserPage() {
     history.push('/quickStepHome')
   }
   return (
+    <div className="pageContainer">
     <div className="profileContainer">
       <h2>Welcome, {user.username}!</h2>
-      
-      <LogOutButton className="stepButton" />
-      <button className="stepButton" onClick={handleStart}>Start</button>
+      <br />
+      <img src={user.picture} alt="Profile Picture" />
+      <br />
+      <br />
+      <button className="stepButton" onClick={handleStart}>Start Stepping</button>
+    </div>
     </div>
   );
 }

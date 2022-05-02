@@ -7,20 +7,25 @@ import React from 'react';
 
 function AboutPage() {
   return (
-    <div className="profileContainer">
-      <div>
+    <div className="pageContainer">
+      <div className="profileContainer">
         <h1>Technologies Used:</h1>
-        <ul>
-          <li>React</li>
-          <li>Redux</li>
-          <li>Redux-Saga</li>
-          <li>Node</li>
-          <li>Express</li>
-          <li>Material UI</li>
-          <li>Google Fit API and Login</li>
-        </ul>
-      <h1>Next..</h1>
-      <p>Challenge Mode</p>
+          <p>React</p>
+          <p>Redux</p>
+          <p>Redux-Saga</p>
+          <p>Node</p>
+          <p>Express</p>
+          <p>Material UI</p>
+          <p>Google Fit API and Login</p>
+        
+
+        <h1>Next I Would Like to... </h1>
+          <p>Challenge Mode</p>
+
+        <h1>Thanks to... </h1>
+          <p>My Family</p>
+          <p>Butler Cohort</p>
+          <p>Prime Digital Academy</p>
       </div>
     </div>
   );
