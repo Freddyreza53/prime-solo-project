@@ -6,6 +6,13 @@ import axios from 'axios';
 
 function QuickStepHomePage() {
 
+    // useEffect(() => {
+    //     dispatch({
+    //         type: 'PUT_TOKEN',
+    //         payload: token
+    //     } )
+    // }, [])
+
     const dispatch = useDispatch();
     const history = useHistory();
     const token = useSelector(store => store.tokenReducer);

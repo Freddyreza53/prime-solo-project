@@ -1,14 +1,20 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useHistory } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const token = useSelector(store => store.tokenReducer);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleStart = () => {
+    dispatch({
+      type: 'PUT_TOKEN',
+      payload: token
+    })
     history.push('/quickStepHome')
   }
   return (
