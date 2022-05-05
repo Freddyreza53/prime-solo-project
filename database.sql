@@ -19,14 +19,14 @@ CREATE TABLE "user" (
     "hard_goal" INT DEFAULT 0
 );
 
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "display_name" VARCHAR(80),
-    "first_name" VARCHAR(80),
-    "last_name" VARCHAR(80),
-    "email" VARCHAR(120) UNIQUE,
-    "picture" VARCHAR(1200)
-);
+-- CREATE TABLE "user" (
+--     "id" SERIAL PRIMARY KEY,
+--     "display_name" VARCHAR(80),
+--     "first_name" VARCHAR(80),
+--     "last_name" VARCHAR(80),
+--     "email" VARCHAR(120) UNIQUE,
+--     "picture" VARCHAR(1200)
+-- );
 
 CREATE TYPE "difficulty_list" AS ENUM ('easy', 'medium', 'hard');
 
